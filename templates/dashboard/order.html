@@ -1,0 +1,56 @@
+{% extends 'partial/base.html' %}
+ 
+{% block content %}
+{%  include 'partial/topnav.html' %}
+
+<!--Table-->
+<div class="container">
+   <div class="row my-4">
+       <div class="col-md-4">
+           <div class="border bg-white p-3">
+               <h4>Add order</h4>
+               <hr>
+               <form method="POST">
+                   {% csrf_token %}
+                   {{form}}
+                   <input class="btn btn-success btn-block" type="submit" value="Make Order">
+
+               </form>
+           </div>
+       </div>
+      <div class="col-md-8">
+           <table class="table bg-white">
+               <thead class="badge-dark">
+                   <tr class="text-white">
+                       <th scope="col">id</th>
+                       <th scope="col">Product</th>
+                       <th scope="col">Category</th>
+                       <th scope="col">Quantity</th>
+                       <th scope="col">Time</th>
+                   </tr>
+               </thead>
+               <tbody>
+                  {% for order in orderform %}
+                   <tr>
+                       <th scope="row">{{order.id}}</th>
+                       <td >{{order.product}}</td>
+                       {%  if order.type == '1' %}
+                       <td>stocked in</td>
+                       {% else %}
+                       <td>stocked out</td>
+                       {% endif %}
+                       <td>{{order.quantity}}</td>
+                       <td>{{order.date_created}}</td>
+                       <td>
+                           {{order.staff}}
+                       </td>
+                   </tr>
+                   {%  endfor %}
+                   
+               </tbody>
+           </table>
+    </div>
+   </div>
+
+</div>
+{% endblock %}

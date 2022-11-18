@@ -1,0 +1,22 @@
+{%  extends 'partial/base2.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div>
+  <div class="container">
+    <div class="row mt-5">
+      <div  class="col-md-6 offset-md-4">
+        <div class="border bg-white p-3">
+            <h3>Login  page</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{form|crispy }}
+              <input type="submit"  class="btn btn-success">
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

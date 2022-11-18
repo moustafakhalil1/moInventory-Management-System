@@ -1,0 +1,21 @@
+from pyexpat import model
+from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .models import profile
+class ctreateuserform(UserCreationForm):
+    email=forms.EmailField()
+    class Meta:
+        model = User
+        fields=['username','password1','password2','email']
+
+class userupdateform(forms.ModelForm):
+    class Meta:
+        model=User
+        fields=['username','email']
+
+class profileupdateform(forms.ModelForm):
+    class Meta:
+        model=profile
+        fields=['name','address','phone','image']
+

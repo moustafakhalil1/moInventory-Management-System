@@ -1,0 +1,23 @@
+{% extends 'partial/base.html' %}
+{% block content %} 
+{%  include 'partial/topnav.html' %}
+<!--Table-->
+<div class="container">
+    <div class="row ">
+        <div class="col-md-11 offset-md-1">
+            <div class="border bg-white p-3">
+                <h4 class="">Add Stock</h4>
+                <hr>
+                <form method="post">
+                    {% csrf_token %}
+                    {{form}}
+                    <input type="hidden" name="id" value="{{ form.id }}">
+                    <input class="btn btn-success btn-block" type="submit" value="Add">
+
+                </form>
+            </div>
+        </div>  
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+
+<div class="container">
+    <div class="row mt-4">
+            <div class="border bg-white p-3">
+                <h4>Add order</h4>
+                <hr>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form}}
+ 
+                    <input class="btn btn-success btn-block" type="submit" value="Make Order">
+
+                </form>
+            </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    Orders Records
+                </div>
+                <div class="card-body">
+                    <table class="table bg-white">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in order %}
+                            {% if order.sttaf == user %}
+                            <tr>
+                                <td>{{order.product}}</td>
+                                <td>{{order.category}}</td>
+                                <td>{{order.quantity}}</td>
+                            </tr>
+ 
+                            {% endif %}
+							{%  endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

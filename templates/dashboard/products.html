@@ -1,0 +1,81 @@
+{% extends 'partial/base.html' %}
+{% block content %} 
+{%  include 'partial/topnav.html' %}
+<!--Table-->
+<div class="container">
+    <div class="row my-4 justify-content-end">
+        <div class="col-md-5 offset-md-4">
+          <!-- Button trigger modal -->
+          <div class="text-right text-right">
+            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong">
+                Add mew product
+              </button>
+          </div>
+           
+      
+          
+         <!-- Modal -->
+     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLongTitle">New Product</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+           </div>
+         <div class="modal-body">
+            <!--Table-->
+        
+                <form method="post">
+                    {% csrf_token %}
+                    {{form}}
+                    <hr>
+                    <input class="btn btn-success btn-block" type="submit" value="Add">
+
+                </form>
+
+             </div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+            </div>
+         </div>
+    </div>
+
+
+
+
+    
+        <div class="col-md-10 offset-md-1 justify-content-center">
+            <table class="table bg-white">
+                <thead class="bg-dark">
+                    <tr class="text-white">
+                        <th scope="col">id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Activity</th>
+                    </tr>
+                </thead>
+                {% for product in product %}
+                <tbody>
+                    <tr>
+                        <th scope="row">{{product.id}}</th>
+                        <td>{{product.name}}</td>
+                        <td>{{product.category}}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm" href="{% url 'update' product.id %}">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'delete' product.id %}">Delete</a>
+                        </td>
+                    </tr>
+                  
+                </tbody>
+                {% endfor %} 
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

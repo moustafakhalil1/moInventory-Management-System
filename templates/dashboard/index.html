@@ -1,0 +1,75 @@
+{%  extends 'partial/base.html' %}
+{% block content %}
+
+
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+  <!--Graphs-->
+   <!--Topside-->
+   <div class="container">
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    Information
+                </div>
+                <div class="card-body">
+                    <marquee behavior="" direction="">
+                        <h3 class="my-4">Welcome To Inventory </h3>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="row">
+                        {% for product in products %}
+                        <div class="col-md-4 p-3 ">
+                            <a class=" text-dark">
+                                <div class="card my-card shadow text-center p-3 bg-secondary">
+                                    <h4>Total Inventory<i class="fas fa-box"></i></h4>
+                                    <h3>{{ product.allproducts }}</h3>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        <div class="col-md-4 p-3 ">
+                            <a class="text-decoration-none text-dark">
+                                <div class="card my-card shadow text-center p-3 bg-secondary">
+                                    <h4>Purchasess<i class="fas fa-shipping-fast"></i></h4>
+                                    <h3>{{stocks}}</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 p-3 ">
+                          <a class="text-decoration-none text-dark">
+                              <div class="card my-card shadow  text-center p-3 bg-secondary">
+                                  <h4>Orders<i class="fas fa-shipping-fast"></i></h4>
+                                  <h3>{{stockedout}}</h3>
+                              </div>
+                          </a>
+                        </div>
+                        <div class="col-md-4 p-3 ">
+                          <a class="text-decoration-none bg-secondary">
+                              <div class="card my-card shadow bg-secondary text-center p-3">
+                                  <h4>Suppliers<i class="fas fa-shipping-fast"></i></h4>
+                                  <h3>{{ allsuppliers }}</h3>
+                              </div>
+                          </a>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End Graphs-->
+{% else %}
+{% include 'dashboard/staff_index.html' %}
+{% endif %}
+
+{% endblock %}
+
