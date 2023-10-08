@@ -1,4 +1,2 @@
 # Inventory-Management-System With Django FrameWork
-
-
-moustafakhalil1/Inventory-Management-System with python django
+Used HTML , CSS , Javascript , Bootstrap , Pyhton Django FrameWork
